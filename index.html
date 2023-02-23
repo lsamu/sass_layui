@@ -1,0 +1,57 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入 layui.css -->
+    <link rel="stylesheet" href="//unpkg.com/layui@2.6.8/dist/css/layui.css">
+
+    <!-- 引入 layui.js -->
+    <script src="//unpkg.com/layui@2.6.8/dist/layui.js"></script>
+
+    <!-- 先引入 Vue -->
+    <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+    <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+    <!-- 引入 http-vue-loader -->
+    <script src="https://unpkg.com/http-vue-loader"></script>
+</head>
+
+<body>
+    <div id="app">
+        <App></App>
+    </div>   
+    <script>
+        // 使用httpVueLoader
+        Vue.use(httpVueLoader);
+        Vue.component("box-button","url:./component/button/index.vue")
+        Vue.component("box-input","url:./component/input/index.vue")
+        Vue.component("box-layout","url:./component/layout/index.vue")
+        Vue.component("box-row","url:./component/row/index.vue")
+        Vue.component("box-col","url:./component/col/index.vue")
+        Vue.component("box-form","url:./component/form/index.vue")
+        Vue.component("box-form-item","url:./component/form-item/index.vue")
+        Vue.component("box-select","url:./component/select/index.vue")
+        Vue.component("box-radio","url:./component/radio/index.vue")
+        Vue.component("box-checkbox","url:./component/checkbox/index.vue")
+        Vue.component("box-switch","url:./component/switch/index.vue")
+        Vue.component("box-table","url:./component/table/index.vue")
+        Vue.component("box-tabs","url:./component/tabs/index.vue")
+        Vue.component("box-progress","url:./component/progress/index.vue")
+        Vue.component("box-date-picker","url:./component/date-picker/index.vue")
+        Vue.component("box-pagination","url:./component/pagination/index.vue")
+        new Vue({
+            el: '#app',
+            data: function () {
+                return { visible: false }
+            },
+            components: {
+                // 将组建加入组建库
+                'App': 'url:./App.vue'
+            }
+        })
+    </script>
+</body>
+
+</html>
