@@ -1,5 +1,5 @@
 <template>
-    <input type="text" class="layui-input" id="test1">
+    <input type="text" class="layui-input" id="testDate">
 </template>
 <script>
 const {onMounted} = Vue;
@@ -9,7 +9,7 @@ module.exports = {
             layui.use('laydate', function () {
                 var laydate = layui.laydate;
                 laydate.render({
-                    elem: '#test1' //指定元素
+                    elem: '#testDate' //指定元素
                 });
             });
         })

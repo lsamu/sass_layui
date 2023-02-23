@@ -39,6 +39,9 @@
             <box-form-item label="开关">
                 <box-switch></box-switch>
             </box-form-item>
+            <box-form-item>
+                <box-button></box-button>
+            </box-form-item>
         </box-form>
         <box-table>
             <box-table-column label="标题" prop="title"></box-table-column>
