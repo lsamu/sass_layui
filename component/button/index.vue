@@ -1,11 +1,14 @@
 <template>
-    <button type="button" class="layui-btn">一个标准的按钮</button>
+    <button type="button" class="layui-btn" v-bind="context.attrs" v-on="context.listeners">
+        <slot></slot>
+    </button>
 </template>
 <script>
 module.exports = {
-    setup() {
+    setup(props,context) {
         return {
-            aa:"aaa"
+            props,
+            context
         }
     }
 }

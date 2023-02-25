@@ -1,16 +1,12 @@
 <template>
     <div>
-        <router-view></router-view>
+        tree
     </div>
 </template>
- 
 <script>
 module.exports = {
     setup() {
-
-        return {
-
-        }
+        return {}
     }
 }
 </script>

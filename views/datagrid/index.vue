@@ -1,16 +1,12 @@
 <template>
     <div>
-        <router-view></router-view>
+        datagrid
     </div>
 </template>
- 
 <script>
 module.exports = {
     setup() {
-
-        return {
-
-        }
+        return {}
     }
 }
 </script>
