@@ -1,6 +1,6 @@
 <template>
     <div class="layui-form-item">
-        <label class="layui-form-label">{{ props.label||"" }}</label>
+        <label class="layui-form-label">{{ props.label || "" }}</label>
         <div class="layui-input-block">
             <slot></slot>
         </div>
@@ -9,9 +9,9 @@
 <script>
 module.exports = {
     props: ["label"],
-    setup(props, context) {
+    setup: function (props, context) {
 
-        return { props }
+        return { props: props }
     }
 }
 </script>

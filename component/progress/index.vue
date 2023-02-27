@@ -5,12 +5,9 @@
 </template>
 <script>
 
-
-
-const { onMounted } = Vue
 module.exports = {
-    setup() {
-        onMounted(() => {
+    setup: function () {
+        Vue.onMounted(function () {
             layui.use('element', function () {
                 var element = layui.element;
                 element.render();

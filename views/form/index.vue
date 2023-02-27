@@ -1,15 +1,13 @@
 <template>
     <div ref="refDev">
+
         <div class="hello">Hello {{ who }} {{ aa }}
-        
+
             <div class="title">我是颜色</div>
         </div>
         {{ pp }} {{ pp.num }}
         <box-button @click="handleCount">点击</box-button>
 
-        <vv-index :option="{ title: 'title111' }"></vv-index>
-
-        <box-button>确定</box-button>
         <box-input></box-input>
 
         <box-layout>
@@ -59,32 +57,25 @@
     </div>
 </template>
 <script>
-const { ref, reactive, onMounted } = Vue
 
 module.exports = {
-    components: {
-        'vv-index': 'url:../../component/index.vue'
-    },
-    setup() {
-        const pp = reactive({
+    components: {},
+    setup: function () {
+        const pp = Vue.reactive({
             title: "asdfadf",
             num: 0
         })
         const aa = "aatest";
-        const refDev = ref();
-
-        onMounted(() => {
-            //console.log(refDev.value);
-        })
+        const refDev = Vue.ref();
 
         return {
             who: "whoaaaa",
-            aa,
-            pp,
-            handleCount: () => {
+            aa: aa,
+            pp: pp,
+            handleCount: function () {
                 pp.num++
             },
-            refDev
+            refDev: refDev
         }
     }
 }
@@ -94,8 +85,8 @@ module.exports = {
 .hello {
     background-color: #ffe;
 
-    .title{
-        color:red
+    .title {
+        color: red
     }
 }
 </style>

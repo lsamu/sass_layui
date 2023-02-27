@@ -2,10 +2,9 @@
     <div id="testPage">1231</div>
 </template>
 <script>
-const {onMounted} = Vue
 module.exports = {
-    setup() {
-        onMounted(() => {
+    setup: function () {
+        Vue.onMounted(function () {
             layui.use('laypage', function () {
                 var laypage = layui.laypage;
                 laypage.render({

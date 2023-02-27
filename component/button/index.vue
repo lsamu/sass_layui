@@ -1,14 +1,14 @@
 <template>
     <button type="button" class="layui-btn" v-bind="context.attrs" v-on="context.listeners">
-        <slot></slot>
+        <slot>按钮</slot>
     </button>
 </template>
 <script>
 module.exports = {
-    setup(props,context) {
+    setup: function (props, context) {
         return {
-            props,
-            context
+            props: props,
+            context: context
         }
     }
 }

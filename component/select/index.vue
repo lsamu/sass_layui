@@ -10,7 +10,7 @@
 </template>
 <script>
 module.exports = {
-    setup() {
+    setup:function() {
 
         return {}
     }

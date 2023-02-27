@@ -5,9 +5,14 @@
 </template>
  
 <script>
-module.exports = {
-    setup() {
 
+const ref = Vue.ref;
+const reactive = Vue.reactive;
+const onMounted = Vue.onMounted;
+const computed = Vue.computed;
+
+module.exports = {
+    setup: function () {
         return {
 
         }

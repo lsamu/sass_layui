@@ -7,15 +7,15 @@
 
 module.exports = {
     props: ["span"],
-    setup(props, context) {
+    setup: function (props, context) {
 
-        const getSpan = ()=>{
+        const getSpan = function () {
             return props.span || 12
         }
 
         return {
-            props,
-            getSpan
+            props: props,
+            getSpan: getSpan
         }
     }
 }

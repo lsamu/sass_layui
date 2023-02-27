@@ -5,12 +5,10 @@
 </template>
 <script>
 
-const {onMounted} = Vue
-
 module.exports = {
-    setup() {
+    setup:function() {
 
-        onMounted(() => {
+        Vue.onMounted(function(){
             layui.use('form', function () {
                 var form = layui.form;
                 form.render()
