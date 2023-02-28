@@ -17,7 +17,7 @@
     </div>
 </template>
 <script>
-module.exports = {
+export default {
     setup:function() {
         // layui.use('element', function () {
         //     var element = layui.element;

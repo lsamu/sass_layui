@@ -4,7 +4,7 @@
     </button>
 </template>
 <script>
-module.exports = {
+export default {
     setup: function (props, context) {
         return {
             props: props,

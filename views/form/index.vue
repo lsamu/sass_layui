@@ -57,11 +57,12 @@
     </div>
 </template>
 <script>
+import {reactive,toRaw} from 'vue'
 
-module.exports = {
+export default {
     components: {},
     setup: function () {
-        const pp = Vue.reactive({
+        const pp = reactive({
             title: "asdfadf",
             num: 0
         })
@@ -74,6 +75,8 @@ module.exports = {
             pp: pp,
             handleCount: function () {
                 pp.num++
+
+                console.log(pp.title)
             },
             refDev: refDev
         }
@@ -81,12 +84,12 @@ module.exports = {
 }
 </script>
 
-<style lang="less">
+<style>
 .hello {
     background-color: #ffe;
 
+}
     .title {
         color: red
     }
-}
 </style>

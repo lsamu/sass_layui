@@ -1,20 +1,40 @@
 <template>
     <div>
+        dsdf {{ title }}
+        <aa></aa>
+        {{ content }}
+
+        {{ bb }}
+
+        <button @click="handleClick">点击</button>
+        <router-link to="/">首页</router-link>
+        <router-link to="/form">Form</router-link>
         <router-view></router-view>
     </div>
 </template>
- 
 <script>
+import aa from "./aa.vue"
+import { ref } from "vue"
 
-const ref = Vue.ref;
-const reactive = Vue.reactive;
-const onMounted = Vue.onMounted;
-const computed = Vue.computed;
+const { content } = { content: "1231231312" }
 
-module.exports = {
-    setup: function () {
+
+
+export default {
+    components: {
+        "aa": aa
+    },
+    setup() {
+        const bb = ref(0)
+
+        const handleClick = ()=>{
+            bb.value++
+        }
         return {
-
+            title: "title123",
+            content,
+            bb,
+            handleClick
         }
     }
 }

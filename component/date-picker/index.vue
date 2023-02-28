@@ -2,7 +2,7 @@
     <input type="text" class="layui-input" id="testDate">
 </template>
 <script>
-module.exports = {
+export default {
     setup: function () {
         Vue.onMounted(function () {
             layui.use('laydate', function () {

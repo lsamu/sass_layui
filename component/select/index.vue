@@ -9,7 +9,7 @@
     </select>
 </template>
 <script>
-module.exports = {
+export default {
     setup:function() {
 
         return {}

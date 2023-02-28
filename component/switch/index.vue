@@ -2,7 +2,7 @@
    <input type="checkbox" name="switch" lay-skin="switch">
 </template>
 <script>
-module.exports = {
+export default {
     setup:function() {
 
         return {}
