@@ -27,15 +27,17 @@
             moduleCache: {
                 vue: Vue,
                 less: function (scssText) {
-                    return new Promise(function (resolve, reject) {
-                        less.render(scssText).then(function (aa) {
-                            resolve(aa.css)
-                        }, function (bb) {
-                            reject(bb)
-                        }).catch(function (cc) {
-                            reject(cc)
-                        })
-                    })
+                    console.log(scssText)
+                    // return new Promise(function (resolve, reject) {
+                    //     less.render(scssText).then(function (aa) {
+                    //         resolve(aa.css)
+                    //     }, function (bb) {
+                    //         reject(bb)
+                    //     }).catch(function (cc) {
+                    //         reject(cc)
+                    //     })
+                    // })
+                    //return scssText
                 },
             },
             getFile: function (url) {
