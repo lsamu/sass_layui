@@ -16,6 +16,8 @@
 import aa from "./aa.vue"
 import { ref } from "vue"
 
+import BoxButton from "./component/button/index.vue"
+
 const { content } = { content: "1231231312" }
 
 
