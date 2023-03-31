@@ -1,7 +1,7 @@
 <template>
     <div>
         index
-        <box-button></box-button>
+        <box-button>提交</box-button>
 
         <box-collapse></box-collapse>
         <box-color-picker></box-color-picker>
