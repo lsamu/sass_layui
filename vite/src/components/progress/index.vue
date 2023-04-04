@@ -3,7 +3,7 @@
         <div class="layui-progress-bar" lay-percent="10%"></div>
     </div>
 </template>
-<script>
+<script lang="ts" setup>
 
 onMounted(function () {
     layui.use('element', function () {

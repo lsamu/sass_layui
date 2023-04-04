@@ -1,9 +1,11 @@
 <template>
     <div>
-        index
         <box-button>提交</box-button>
 
-        <box-collapse></box-collapse>
+        <box-collapse>
+            <box-collapse-item></box-collapse-item>
+            <box-collapse-item></box-collapse-item>
+        </box-collapse>
         <box-color-picker></box-color-picker>
         <box-dialog></box-dialog>
         <box-dropdown></box-dropdown>
@@ -24,6 +26,8 @@
         <box-tabs></box-tabs>
         <box-tree></box-tree>
         <box-upload></box-upload>
+        <box-nav></box-nav>
+        <box-transfer></box-transfer>
     </div>
 </template>
 <script lang="ts" setup>
