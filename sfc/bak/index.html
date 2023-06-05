@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="./lib/layui/css/layui.css">
+<script src="./lib/layui/layui.js"></script>
+<script src="./lib/vue2.js"></script>
+<script src="./lib/vue2-sfc-loader.js"></script>
+<script src="./lib/axios.js"></script>
+<script src="./lib/vue-router.js"></script>
+<script src="./lib/less.js"></script>
+<body>
+    <div id="app">
+        <App></App>
+    </div>
+
+    <script>
+        const loadModule = window['vue2-sfc-loader'].loadModule;
+
+        const vueVersion = window['vue2-sfc-loader'].vueVersion;
+
+        const options = {
+            moduleCache: {
+                vue: Vue,
+                less: function (scssText) {
+                    console.log(scssText)
+                    // return new Promise(function (resolve, reject) {
+                    //     less.render(scssText).then(function (aa) {
+                    //         resolve(aa.css)
+                    //     }, function (bb) {
+                    //         reject(bb)
+                    //     }).catch(function (cc) {
+                    //         reject(cc)
+                    //     })
+                    // })
+                    //return scssText
+                },
+            },
+            getFile: function (url) {
+
+                // const aa = httpRequest("./myComponent.vue").then(function(responseText) {
+                // console.log(responseText)
+                // })
+
+                // return aa;
+                // if ( url === '/main.vue' )
+                // return Promise.resolve(mainComponent);
+
+                // axios.get("./myComponent.vue").then(function (ret) {
+                //     console.log(ret)
+                //     return ret.data;
+                // })
+
+                return new Promise(function (resolve, reject) {
+                    axios.get(url).then(function (ret) {
+                        return resolve(ret.data);
+                    })
+                });
+                // return System.import(url)
+            },
+            addStyle: function (textContent) {
+
+                // const style = Object.assign(document.createElement('style'), { textContent });
+                // const ref = document.head.getElementsByTagName('style')[0] || null;
+                // document.head.insertBefore(style, ref);
+            },
+        }
+
+        const loadComponent = function (url) {
+            return Vue.defineComponent(function () {
+                const ret = loadModule(url, options)
+                return ret
+            })
+        }
+    </script>
+    <script src="./component.js"></script>
+    <script src="./router.js"></script>
+    <script>
+        // loadModule("./myComponent.vue", options)
+        //     .then(function (component) {
+        //         Vue.use(VueRouter);
+
+        //         const vv = new Vue({
+        //             render: function (h) {
+        //                 return h(component)
+        //             },
+        //         });
+        //         return vv.$mount('#app')
+        //     });
+        Vue.use(VueRouter);
+        new Vue({
+            el: '#app',
+            router: boxRouter,
+            components: {
+                'App': Vue.defineComponent(function () {
+                    return loadModule('./App.vue', options)
+                }),
+            }
+        })
+    </script>
+</body>
+
+</html>
