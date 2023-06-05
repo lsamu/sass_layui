@@ -6,7 +6,7 @@
             <div class="title">我是颜色</div>
         </div>
         {{ pp }} {{ pp.num }}
-        <box-button @click="handleCount">点击</box-button>
+        <!-- <box-button @click="handleCount">点击</box-button>
 
         <box-input></box-input>
 
@@ -53,7 +53,7 @@
         </box-tabs>
         <box-progress></box-progress>
         <box-date-picker></box-date-picker>
-        <box-pagination></box-pagination>
+        <box-pagination></box-pagination> -->
     </div>
 </template>
 <script>
@@ -86,7 +86,7 @@ export default {
 
 <style >
 .hello {
-    background-color: #ffe;
+    background-color: blue;
 
 }
     .title {
