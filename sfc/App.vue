@@ -41,3 +41,8 @@ export default {
     }
 }
 </script>
+<style lang="scss">
+    .cc{
+        font-size:12px
+    }
+</style>
