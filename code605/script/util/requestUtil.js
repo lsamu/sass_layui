@@ -14,6 +14,10 @@ class requestUtil {
 
     BASE_URL = "";
 
+    setBaseURL = (url)=>{
+        this.BASE_URL = url;
+    }
+
     request = (url, method, data) => {
         let oo = {
             method: method,

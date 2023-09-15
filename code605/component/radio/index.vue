@@ -17,7 +17,7 @@ export default {
         const uuidv1 = uuid().replace(/-/g, '');
         const id = "id" + uuidv1
         const name = "name" + uuidv1
-        const filter = "name" + uuidv1
+        const filter = "filter" + uuidv1
 
         onMounted(function () {
 

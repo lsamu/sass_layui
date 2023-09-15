@@ -42,14 +42,16 @@ export default {
                 {
                     text: "确定",
                     onClick: () => {
-                        alert("确定");
+                        // alert("确定");
+                        dialogOption.visible = false;
                         return false;
                     }
                 },
                 {
                     text: "取消",
                     onClick: () => {
-                        alert("取消");
+                        // alert("取消");
+                        dialogOption.visible = false;
                         return false;
                     }
                 }

@@ -49,15 +49,10 @@ export default {
                     area: [attrs.width || "50%", attrs.height || "400px"],
                     maxmin: true,
                     btn,
-                    ...btnsFuns
-                    // btn: ["确定", "取消"],
-                    // btn1: function (index, layero, that) {
-                    //     emits("input", false)
-                    //     return false
-                    // },
-                    // btn2: function (index, layero, that) {
-                    //     return false
-                    // },
+                    ...btnsFuns,
+                    end: () => {
+                        emits("input", false)
+                    }
                 });
             } else {
                 if (dialogIndex) {
