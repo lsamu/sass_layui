@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="./script/layui/css/layui.css">
+<script src="./script/layui/layui.js"></script>
+<script src="./script/vue2.js"></script>
+<script src="./script/vue2-sfc-loader.js"></script>
+<script src="./script/axios.js"></script>
+<script src="./script/vue-router.js"></script>
+<script src="./script/echarts.min.js"></script>
+<script src="./script/uuid.min.js"></script>
+<script src="./api/index.js"></script>
+<script src="./script/util/loadUtil.js"></script>
+<script src="./script/util/requestUtil.js"></script>
+
+<body>
+    <div id="app">
+        <App></App>
+    </div>
+
+    <script>
+        const loadModule = window['vue2-sfc-loader'].loadModule;
+        const options = {
+            moduleCache: {
+                vue: Vue,
+            },
+            getFile: function (url) {
+                return new Promise(function (resolve, reject) {
+                    axios.get(url).then(function (ret) {
+                        return resolve(ret.data);
+                    })
+                });
+            },
+            addStyle: function (textContent) {
+                const style = Object.assign(document.createElement('style'), { textContent });
+                const ref = document.head.getElementsByTagName('style')[0] || null;
+                document.head.insertBefore(style, ref);
+            },
+        }
+        const loadComponent = function (url) {
+            return Vue.defineComponent(function () {
+                const ret = loadModule(url, options)
+                return ret
+            })
+        }
+        const loadAsyncComponent = function (url) {
+            return Vue.defineAsyncComponent(function () {
+                const ret = loadModule(url, options)
+                return ret
+            })
+        }
+    </script>
+    <script src="./component/index.js"></script>
+    <script>
+        Vue.use(VueRouter);
+
+        const boxRouter = new VueRouter({
+            routes: [
+                { path: '/', component: loadComponent("./views/home/index.vue") },
+                { path: '/demo', component: loadComponent("./views/demo/index.vue") },
+                { path: '/form', component: loadComponent("./views/form/index.vue") },
+                { path: '/dialog', component: loadComponent("./views/dialog/index.vue") },
+                { path: '/tabs', component: loadComponent("./views/tabs/index.vue") }
+            ]
+        })
+
+        layui.use('layer', function () {
+            var layer = layui.layer;
+            Vue.prototype.$layer = layer;
+        });
+
+        new Vue({
+            el: '#app',
+            router: boxRouter,
+            components: {
+                'App': Vue.defineComponent(function () {
+                    return loadModule('./App.vue', options)
+                }),
+            }
+        })
+    </script>
+    <style>
+        .required::before {
+            content: "*";
+            color: #FF5722;
+        }
+    </style>
+</body>
+
+</html>
