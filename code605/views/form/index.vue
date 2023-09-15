@@ -19,6 +19,9 @@
         <box-form-item label="切换">
             <box-switch v-model="formOption.form.switch"></box-switch>
         </box-form-item>
+        <box-form-item label="上传">
+            <box-upload v-model="formOption.form.upload"></box-upload>
+        </box-form-item>
         <box-form-item>
             <box-button lay-submit @onSubmit="handleSubmit">提交</box-button>
         </box-form-item>
