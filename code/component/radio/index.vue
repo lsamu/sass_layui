@@ -1,43 +1,14 @@
 <template>
     <div>
-        <input type="radio" :name="name" :value="item.value" :title="item.label" v-for="item, index in attrs.data || []"
-            :key="index" :checked="item.value == attrs.value" :lay-filter="filter">
+        <input type="radio" name="sex" value="男" title="男">
+        <input type="radio" name="sex" value="女" title="女" checked>
     </div>
 </template>
 <script>
-import { onMounted, getCurrentInstance, defineProps } from "vue"
+module.exports = {
+    setup:function() {
 
-export default {
-    setup: function (props, context) {
-        const that = getCurrentInstance().proxy;
-
-        const attrs = context.attrs;
-        const emits = context.emit;
-
-        const uuidv1 = uuid().replace(/-/g, '');
-        const id = "id" + uuidv1
-        const name = "name" + uuidv1
-        const filter = "filter" + uuidv1
-
-        onMounted(function () {
-
-            layui.use(['form'], function () {
-                var form = layui.form;
-                form.render();
-                form.on('radio(' + filter + ')', function (data) {
-                    emits("input",data.value)
-                });
-            });
-            
-        })
-
-        return {
-            id,
-            that,
-            attrs,
-            name,
-            filter
-        }
+        return {}
     }
 }
 </script>

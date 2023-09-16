@@ -6,48 +6,24 @@
 <script src="./script/vue2-sfc-loader.js"></script>
 <script src="./script/axios.js"></script>
 <script src="./script/vue-router.js"></script>
-<script src="./script/less.js"></script>
+<script src="./script/echarts.min.js"></script>
+<script src="./script/uuid.min.js"></script>
+<script src="./script/util/loadUtil.js"></script>
+<script src="./script/util/requestUtil.js"></script>
 
 <body>
     <div id="app">
         <App></App>
     </div>
+    <script src="./script/init.js"></script>
+    <script src="./component/index.js"></script>
+    <script src="./router.js"></script>
+    <script>
+        layui.use('layer', function () {
+            var layer = layui.layer;
+            Vue.prototype.$layer = layer;
+        });
 
-    <script>
-        const loadModule = window['vue2-sfc-loader'].loadModule;
-        const options = {
-            moduleCache: {
-                vue: Vue,
-            },
-            getFile: function (url) {
-                return new Promise(function (resolve, reject) {
-                    axios.get(url).then(function (ret) {
-                        return resolve(ret.data);
-                    })
-                });
-            },
-            addStyle: function (textContent) {
-                const style = Object.assign(document.createElement('style'), { textContent });
-                const ref = document.head.getElementsByTagName('style')[0] || null;
-                document.head.insertBefore(style, ref);
-            },
-        }
-        const loadComponent = function (url) {
-            return Vue.defineComponent(function () {
-                const ret = loadModule(url, options)
-                return ret
-            })
-        }
-        const loadAsyncComponent = function (url) {
-            return Vue.defineAsyncComponent(function () {
-                const ret = loadModule(url, options)
-                return ret
-            })
-        }
-    </script>
-    <script src="./router/index.js"></script>
-    <script>
-        Vue.use(VueRouter);
         new Vue({
             el: '#app',
             router: boxRouter,
@@ -58,6 +34,12 @@
             }
         })
     </script>
+    <style>
+        .required::before {
+            content: "*";
+            color: #FF5722;
+        }
+    </style>
 </body>
 
 </html>

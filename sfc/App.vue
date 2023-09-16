@@ -1,6 +1,5 @@
 <template>
     <div>
-        <span class="cc">试试</span>
         <router-view></router-view>
     </div>
    
@@ -11,7 +10,5 @@ export default {
 }
 </script>
 <style>
-.cc {
-    color: red;
-}
+
 </style>

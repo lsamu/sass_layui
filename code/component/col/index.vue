@@ -5,7 +5,7 @@
 </template>
 <script>
 
-export default {
+module.exports = {
     props: ["span"],
     setup: function (props, context) {
 

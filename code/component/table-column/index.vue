@@ -2,7 +2,7 @@
     <td>贤心</td>
 </template>
 <script>
-export default {
+module.exports = {
     setup:function() {
 
         return {}

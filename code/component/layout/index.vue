@@ -4,7 +4,7 @@
     </div>
 </template>
 <script>
-export default {
+module.exports = {
     setup:function() {
         
         return { }

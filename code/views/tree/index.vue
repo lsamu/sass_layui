@@ -1,25 +1,12 @@
 <template>
     <div>
-        <box-tree></box-tree>
+        tree
     </div>
 </template>
 <script>
-import { ref, reactive } from "vue"
-
-export default {
-    components: {},
-    setup(props, context) {
-
-        
-
-        return {
-
-        }
+module.exports = {
+    setup:function() {
+        return {}
     }
 }
 </script>
-<style>
-.cc {
-    font-size: 12px
-}
-</style>

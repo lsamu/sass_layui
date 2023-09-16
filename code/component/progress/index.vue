@@ -5,7 +5,7 @@
 </template>
 <script>
 
-export default {
+module.exports = {
     setup: function () {
         Vue.onMounted(function () {
             layui.use('element', function () {
