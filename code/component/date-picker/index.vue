@@ -1,18 +1,43 @@
 <template>
-    <input type="text" class="layui-input" id="testDate">
+    <input type="text" class="layui-input" :id="id" v-bind="that.$attrs" v-on="that.$listeners">
 </template>
 <script>
-module.exports = {
-    setup: function () {
-        Vue.onMounted(function () {
+import { onMounted, ref, getCurrentInstance, reactive } from "vue"
+
+export default {
+    setup: function (props, context) {
+
+        const that = getCurrentInstance().proxy;
+
+        const attrs = context.attrs;
+        const emits = context.emit;
+
+        const uuidv1 = uuid().replace(/-/g, '');
+        const id = "id" + uuidv1
+
+        onMounted(function () {
+
             layui.use('laydate', function () {
+
                 var laydate = layui.laydate;
+
                 laydate.render({
-                    elem: '#testDate' //指定元素
+                    elem: '#' + id, //指定元素
+                    position: 'fixed',
+                    done: function (value, date, startDate) {
+                        emits("input", value)
+                    }
                 });
+
             });
+
         })
-        return {}
+
+        return {
+            id,
+            that,
+            attrs
+        }
     }
 }
 </script>

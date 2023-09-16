@@ -1,92 +1,66 @@
 <template>
-    <div ref="refDev">
-
-        <div class="hello">Hello {{ who }} {{ aa }}
-
-            <div class="title">我是颜色</div>
-        </div>
-        {{ pp }} {{ pp.num }}
-        <box-button @click="handleCount">点击</box-button>
-
-        <box-input></box-input>
-
-        <box-layout>
-            <box-row>
-                <box-col :span="9">
-                    sdfsdfds
-                </box-col>
-                <box-col :span="3">
-                    sdfsdfds
-                </box-col>
-            </box-row>
-        </box-layout>
-
-        <box-form>
-            <box-form-item label="标题">
-                <box-input></box-input>
-            </box-form-item>
-            <box-form-item label="内容">
-                <box-input></box-input>
-            </box-form-item>
-            <box-form-item label="下拉">
-                <box-select></box-select>
-            </box-form-item>
-            <box-form-item label="单选">
-                <box-radio></box-radio>
-            </box-form-item>
-            <box-form-item label="复选">
-                <box-checkbox></box-checkbox>
-            </box-form-item>
-            <box-form-item label="开关">
-                <box-switch></box-switch>
-            </box-form-item>
-            <box-form-item>
-                <box-button></box-button>
-            </box-form-item>
-        </box-form>
-        <box-table>
-            <box-table-column label="标题" prop="title"></box-table-column>
-            <box-table-column label="内容" prop="内容"></box-table-column>
-        </box-table>
-        <box-tabs>
-
-        </box-tabs>
-        <box-progress></box-progress>
-        <box-date-picker></box-date-picker>
-        <box-pagination></box-pagination>
-    </div>
+    <box-form>
+        {{ formOption.form }}
+        <box-form-item label="标题" required>
+            <box-input v-model="formOption.form.title" lay-verify="required"></box-input>
+        </box-form-item>
+        <box-form-item label="说明">
+            <box-textarea v-model="formOption.form.content"></box-textarea>
+        </box-form-item>
+        <box-form-item label="单选">
+            <box-radio v-model="formOption.form.radio" :data="[{label:'男',value:1},{label:'女',value:2}]"></box-radio>
+        </box-form-item>
+        <box-form-item label="多选">
+            <box-checkbox v-model="formOption.form.checkbox" :data="[{label:'北京',value:1},{label:'上海',value:2},{label:'广州',value:3}]"></box-checkbox>
+        </box-form-item>
+        <box-form-item label="下拉">
+            <box-select v-model="formOption.form.select" :data="[{label:'选项1',value:1}]"></box-select>
+        </box-form-item>
+        <box-form-item label="切换">
+            <box-switch v-model="formOption.form.switch"></box-switch>
+        </box-form-item>
+        <box-form-item label="上传">
+            <box-upload v-model="formOption.form.upload"></box-upload>
+        </box-form-item>
+        <box-form-item>
+            <box-button lay-submit @onSubmit="handleSubmit">提交</box-button>
+        </box-form-item>
+    </box-form>
 </template>
 <script>
+import { reactive, toRaw, ref, onMounted } from 'vue'
 
-module.exports = {
+export default {
     components: {},
     setup: function () {
-        const pp = Vue.reactive({
-            title: "asdfadf",
-            num: 0
+
+        const formOption = reactive({
+            form: {}
         })
-        const aa = "aatest";
-        const refDev = Vue.ref();
+
+        const handleSubmit = async () => {
+            console.log(formOption.form)
+        }
+
+        onMounted(() => {
+
+        })
 
         return {
-            who: "whoaaaa",
-            aa: aa,
-            pp: pp,
-            handleCount: function () {
-                pp.num++
-            },
-            refDev: refDev
+            handleSubmit,
+            formOption
         }
     }
 }
 </script>
 
-<style lang="less">
+<style >
 .hello {
-    background-color: #ffe;
+    background-color: blue;
 
-    .title {
-        color: red
-    }
+}
+
+.title {
+    color: red
 }
 </style>
