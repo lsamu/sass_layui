@@ -47,7 +47,7 @@ export default {
                     type: 1,//类型，必填，否则弹窗会出现[object:object]的字，还有一些问题
                     content: layui.jquery(refDialog.value),
                     area: [attrs.width || "50%", attrs.height || "400px"],
-                    maxmin: true,
+                    maxmin: attrs.maxmin || true,
                     btn,
                     ...btnsFuns,
                     end: () => {

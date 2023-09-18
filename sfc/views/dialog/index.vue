@@ -3,7 +3,7 @@
 
         <button @click="handleDialog">弹窗</button>
 
-        <box-dialog title="批量上传" v-bind="dialogOption" v-model="dialogOption.visible">
+        <box-dialog title="批量上传" v-bind="dialogOption" v-model="dialogOption.visible" :maxmin="false">
             我是弹窗内容
             <button @click="handleDialogClose">取消</button>
         </box-dialog>

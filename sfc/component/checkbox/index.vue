@@ -23,20 +23,28 @@ export default {
 
         onMounted(function () {
 
-            layui.use(['form'], function () {
+            layui.use(['form', 'jquery'], function () {
                 var form = layui.form;
+                var jquery = layui.jquery;
+
                 form.render();
 
                 let aa = [];
 
                 form.on('checkbox(' + filter + ')', function (data) {
-                    if (data.elem.checked) {
-                        aa.push(data.value)
-                    } else {
-                        
-                    }
+                    // if (data.elem.checked) {
+                    //     aa.push(data.value)
+                    // } else {
 
-                    emits("input", aa)
+                    // }
+                    console.log(data)
+
+                    var result = [];
+                    jquery("[name='" + name + "']:checkbox").each(function () {
+                        result.push(jquery(this).attr("value"));
+                    });
+
+                    emits("input", result)
                 });
             });
 

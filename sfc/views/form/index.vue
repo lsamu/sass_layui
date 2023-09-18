@@ -22,6 +22,12 @@
         <box-form-item label="上传">
             <box-upload v-model="formOption.form.upload"></box-upload>
         </box-form-item>
+        <box-form-item label="多选">
+            <box-select2 v-model="formOption.form.select2" :data="[{ label: '北京', value: 0 }, { label: '上海', value: 1 }, { label: '广州', value: 2 }, { label: '广州', value: 3 }, { label: '广州', value: 4 }]"></box-select2>
+        </box-form-item>
+        <box-form-item label="富文本编辑器">
+            <box-edit v-model="formOption.form.edit"></box-edit>
+        </box-form-item>
         <box-form-item>
             <box-button lay-submit @onSubmit="handleSubmit">提交</box-button>
         </box-form-item>
