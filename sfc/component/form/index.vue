@@ -1,6 +1,8 @@
 <template>
     <form class="layui-form" action="">
         <slot></slot>
+
+        <button :id="name" :name="name" type="button" class="layui-btn" lay-submit :lay-filter="filter" style="display: none;"></button>
     </form>
 </template>
 <script>
@@ -8,21 +10,47 @@
 import { onMounted, getCurrentInstance, defineProps, ref } from "vue"
 
 export default {
-    setup: function () {
+    setup: function (props,context) {
 
         const that = getCurrentInstance().proxy;
+        const attrs = context.attrs;
+        const emits = context.emit;
+        const listeners = context.listeners;
+
+        const uuidv1 = uuid().replace(/-/g, '');
+        const filter = `filter-${uuidv1}`;
+        const name = `name-${uuidv1}`
+
+        let form = null;
 
         Vue.onMounted(function () {
             layui.use('form', function () {
-                var form = layui.form;
+                form = layui.form;
                 form.render()
+
+                form.on('submit(' + filter + ')', function (data) {
+                    // emits("onSubmit", data.field)
+                    _callback(data);
+                })
+
             });
         })
 
-        const validate = (callBack) => {
-            console.log(that.$children);
 
-            callBack(false)
+        const verify = (obj)=>{
+            form.verify(obj);
+        }
+
+        let _callback = null;
+
+        const validate = (callBack) => {
+            _callback = callBack;
+            layui.jquery("#"+name).click();
+
+            // form.on('submit(' + filter + ')', function (data) {
+            //     // emits("onSubmit", data.field)
+            //     callBack(data)
+            // })
 
             // const isValid = form.validate('#validate-phone');
             // // 验证通过
@@ -34,7 +62,12 @@ export default {
         }
 
         return {
-            validate
+            validate,
+            props: props,
+            context: context,
+            name,
+            filter,
+            verify
         }
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <box-form>
+    <box-form ref="refForm">
         {{ formOption.form }}
         <box-form-item label="标题" required>
             <box-input v-model="formOption.form.title" lay-verify="required"></box-input>
@@ -30,6 +30,7 @@
         </box-form-item>
         <box-form-item>
             <box-button lay-submit @onSubmit="handleSubmit">提交</box-button>
+            <box-button @click="handleSubmit2">提交2</box-button>
         </box-form-item>
     </box-form>
 </template>
@@ -48,13 +49,23 @@ export default {
             console.log(formOption.form)
         }
 
+        const refForm = ref(null);
+
+        const handleSubmit2 = async ()=>{
+            refForm.value.validate((data)=>{
+                console.log(data)
+            })
+        }
+
         onMounted(() => {
 
         })
 
         return {
             handleSubmit,
-            formOption
+            handleSubmit2,
+            formOption,
+            refForm
         }
     }
 }

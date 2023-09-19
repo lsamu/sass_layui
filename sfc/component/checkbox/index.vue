@@ -27,21 +27,23 @@ export default {
                 var form = layui.form;
                 var jquery = layui.jquery;
 
+                jquery("input:checkbox[name='" + name + "']").each(function (i, b, c) {
+                    for (let j = 0; j < (attrs.value || []).length; j++) {
+                        const ele = attrs.value[j];
+                        if (b.value == ele.label) {
+                            b.checked = true
+                        }
+                    }
+                })
+
                 form.render();
 
-                let aa = [];
-
                 form.on('checkbox(' + filter + ')', function (data) {
-                    // if (data.elem.checked) {
-                    //     aa.push(data.value)
-                    // } else {
-
-                    // }
-                    console.log(data)
 
                     var result = [];
-                    jquery("[name='" + name + "']:checkbox").each(function () {
-                        result.push(jquery(this).attr("value"));
+                    var result = new Array();
+                    jquery("input:checkbox[name='" + name + "']:checked").each(function (i) {
+                        result[i] = jquery(this).val();
                     });
 
                     emits("input", result)
