@@ -29,10 +29,12 @@ export default {
 
                 jquery("input:checkbox[name='" + name + "']").each(function (i, b, c) {
                     for (let j = 0; j < (attrs.value || []).length; j++) {
-                        const ele = attrs.value[j];
-                        if (b.value == ele.label) {
+
+                        if (b.value + "" == j + "") {
                             b.checked = true
+                            break
                         }
+
                     }
                 })
 

@@ -1,5 +1,5 @@
 <template>
-    <button type="button" class="layui-btn" id="ID-upload-demo-btn">
+    <button type="button" class="layui-btn" :id="name">
         <i class="layui-icon layui-icon-upload"></i> 文件上传
     </button>
 </template>
@@ -9,29 +9,49 @@ import { onMounted, getCurrentInstance, defineProps, ref, nextTick } from "vue"
 export default {
     setup: function (props, context) {
 
+        const that = getCurrentInstance().proxy;
+
+        const attrs = context.attrs;
+        const emits = context.emit;
+
+        const uuidv1 = uuid().replace(/-/g, '');
+        const id = "id" + uuidv1
+        const name = "name" + uuidv1
+        const filter = "name" + uuidv1
+
+        let uploadObject = null;
+
         onMounted(() => {
             layui.use(function () {
                 var upload = layui.upload;
                 var layer = layui.layer;
                 var element = layui.element;
                 var $ = layui.$;
-                var uploadInst = upload.render({
-                    elem: '#ID-upload-demo-btn',
-                    url: 'https://httpbin.org/post', // 此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
+                uploadObject = upload.render({
+                    elem: '#' + name,
+                    auto: attrs["auto"] || false,
+                    url: attrs["url"] || 'https://httpbin.org/post', // 此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
+                    accept: attrs["accept"] || "file",
                     before: function (obj) {
                         // 预读本地文件示例，不支持ie8
                         // obj.preview(function (index, file, result) {
                         //     $('#ID-upload-demo-img').attr('src', result); // 图片链接（base64）
                         // });
 
-                        element.progress('filter-demo', '0%'); // 进度条复位
-                        layer.msg('上传中', { icon: 16, time: 0 });
+                        //element.progress('filter-demo', '0%'); // 进度条复位
+                        //layer.msg('上传中', { icon: 16, time: 0 });
+                    },
+                    choose: function (obj) {
+                        obj.preview(function (index, file, result) {
+                            console.log(file)
+                            console.log(result)
+                        })
                     },
                     done: function (res) {
                         // 若上传失败
-                        if (res.code > 0) {
-                            return layer.msg('上传失败');
-                        }
+                        // if (res.code > 0) {
+                        //     return layer.msg('上传失败');
+                        // }
                         // 上传成功的一些操作
                         // …
                         //$('#ID-upload-demo-text').html(''); // 置空上传失败的状态
@@ -58,8 +78,16 @@ export default {
 
         })
 
-        return {
+        const upload = () => {
+            uploadObject.upload();
+        }
 
+        return {
+            that,
+            attrs,
+            emits,
+            upload,
+            name
         }
     }
 }

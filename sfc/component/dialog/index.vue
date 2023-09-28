@@ -42,12 +42,13 @@ export default {
                     btnsFuns['btn' + (index + 1)] = item.onClick || null;
                 }
 
+                console.log(attrs.maxmin)
                 dialogIndex = layer.open({
                     title: attrs.title || "弹窗标题",
                     type: 1,//类型，必填，否则弹窗会出现[object:object]的字，还有一些问题
                     content: layui.jquery(refDialog.value),
                     area: [attrs.width || "50%", attrs.height || "400px"],
-                    maxmin: attrs.maxmin || true,
+                    maxmin: attrs.maxmin,
                     btn,
                     ...btnsFuns,
                     end: () => {

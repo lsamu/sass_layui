@@ -1,9 +1,9 @@
 <template>
-    <td>贤心</td>
+    <slot></slot>
 </template>
 <script>
 export default {
-    setup:function() {
+    setup: function () {
 
         return {}
     }

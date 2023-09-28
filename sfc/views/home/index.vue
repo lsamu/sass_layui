@@ -14,9 +14,11 @@
         {{ dialogOption }}
 
         <box-dialog title="批量上传" v-bind="dialogOption" v-model="dialogOption.visible">
-            我是弹窗内容
-
-            <button @click="handleDialogClose">取消</button>
+           <box-form ref="refForm">
+                <box-form-item label="标题" prop="title" required>
+                    <box-input lay-verify="required"></box-input>
+                </box-form-item>
+           </box-form>
         </box-dialog>
     </div>
 </template>
@@ -36,6 +38,7 @@ export default {
         }
 
 
+        const refForm = ref(null)
         const dialogOption = reactive({
             visible: false,
             btns: [
@@ -43,7 +46,12 @@ export default {
                     text: "确定",
                     onClick: () => {
                         // alert("确定");
-                        dialogOption.visible = false;
+                        refForm.value.validate((valid) => { 
+
+                            dialogOption.visible = false;
+                        } )
+
+                    
                         return false;
                     }
                 },
@@ -74,7 +82,8 @@ export default {
             handleClick,
             dialogOption,
             handleDialog,
-            handleDialogClose
+            handleDialogClose,
+            refForm
         }
     }
 }

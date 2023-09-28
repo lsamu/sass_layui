@@ -7,6 +7,7 @@ const boxRouter = new VueRouter({
         { path: '/form', component: loadComponent("./views/form/index.vue") },
         { path: '/dialog', component: loadComponent("./views/dialog/index.vue") },
         { path: '/tabs', component: loadComponent("./views/tabs/index.vue") },
-        { path: '/tree', component: loadComponent("./views/tree/index.vue") }
+        { path: '/tree', component: loadComponent("./views/tree/index.vue") },
+        { path: '/table', component: loadComponent("./views/table/index.vue") }
     ]
 })

@@ -1,0 +1,52 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/vue3-sfc-loader"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+
+        const options = {
+            moduleCache: {
+                vue: Vue
+            },
+            async getFile(url) {
+
+                const res = await fetch(url);
+                if (!res.ok)
+                    throw Object.assign(new Error(res.statusText + ' ' + url), { res });
+                return {
+                    getContentData: asBinary => asBinary ? res.arrayBuffer() : res.text(),
+                }
+            },
+            addStyle(textContent) {
+
+                const style = Object.assign(document.createElement('style'), { textContent });
+                const ref = document.head.getElementsByTagName('style')[0] || null;
+                document.head.insertBefore(style, ref);
+            },
+        }
+
+        const { loadModule } = window['vue3-sfc-loader'];
+
+        const app = Vue.createApp({
+            components: {
+                'my-component': Vue.defineAsyncComponent(() => loadModule('./myComponent.vue', options))
+            },
+            template: '<my-component></my-component>'
+        });
+
+        const { aa } = loadModule("./script/alert.js", options)
+
+
+        app.mount('#app');
+    </script>
+</body>
+
+</html>

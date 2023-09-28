@@ -112,23 +112,25 @@ export default {
         <table class="layui-table">
             <thead>
                 <tr>
-                    <th style="width:40px"><input type="checkbox" lay-skin="primary" lay-filter="allChoose"
-                            id="selectAll" /></th>
-                    <th v-for="item, index in attrs.columns" :key="index">{{ item.title }}</th>
+                    <th v-for="item, index in thatOption.head" :key="index">{{ item.label }}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="item, index in attrs.data" :key="index">
-                    <td><input type="checkbox" lay-skin="primary" lay-filter="itemChoose" class="rowCheckbox" /> </td>
-                    <td v-for="item2, index2 in attrs.columns" :key="index2" :style="{ 'width': item2.width + 'px' }">{{
-                        item[item2.field] }}</td>
+                    <td v-for="item2, index2 in thatOption.head" :key="index2" :style="{ 'width': item2.width + 'px' }">
+                        {{ item[item2.prop] }}
+                    </td>
                 </tr>
             </tbody>
         </table>
+        <template style="display: none;">
+            <slot ></slot>
+        </template>
+       
     </div>
 </template>
 <script>
-import { onMounted, getCurrentInstance, defineProps } from "vue"
+import { onMounted, getCurrentInstance, defineProps, computed, reactive } from "vue"
 
 export default {
     setup: function (props, context) {
@@ -142,22 +144,39 @@ export default {
         const name = "name" + uuidv1
         const filter = "name" + uuidv1
 
+
+        const thatOption = reactive({
+            head: []
+        })
+
         onMounted(() => {
 
-            layui.use('jquery', function () {
-                var $ = layui.jquery;
-                // 全选/取消全选复选框的事件
-                $("#selectAll").on("click", function () {
-                    $(".rowCheckbox").prop("checked", this.checked);
-                });
+            const head = []
+            for (const item of that.$children) {
+                console.log(item)
+                console.log(item.$slots)
+                if (item.$options._componentTag == "box-table-column") {
+                    head.push(item.$attrs)
+                }
+            }
 
-                // 行复选框的事件
-                $(".rowCheckbox").on("click", function () {
-                    var totalRowCount = $(".rowCheckbox").length;
-                    var checkedRowCount = $(".rowCheckbox:checked").length;
-                    $("#selectAll").prop("checked", totalRowCount === checkedRowCount);
-                });
-            });
+            thatOption.head = head
+
+            // layui.use('jquery', function () {
+            //     var $ = layui.jquery;
+            //     // 全选/取消全选复选框的事件
+            //     $("#selectAll").on("click", function () {
+            //         $(".rowCheckbox").prop("checked", this.checked);
+            //     });
+
+            //     // 行复选框的事件
+            //     $(".rowCheckbox").on("click", function () {
+            //         var totalRowCount = $(".rowCheckbox").length;
+            //         var checkedRowCount = $(".rowCheckbox:checked").length;
+            //         $("#selectAll").prop("checked", totalRowCount === checkedRowCount);
+            //     });
+            // });
+
 
         })
 
@@ -196,7 +215,7 @@ export default {
             that,
             attrs,
             emits,
-            
+            thatOption
         }
     }
 }
