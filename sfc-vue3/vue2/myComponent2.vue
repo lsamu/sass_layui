@@ -4,13 +4,7 @@
         123131313 heelo
     </div>
 </template>
-<script>
-export default {
-    setup(props) {
-        
-    }
-}
-</script>
+
 
 <style>
 .title {
