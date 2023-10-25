@@ -1,5 +1,5 @@
 <template>
-    <form class="layui-form" action="">
+    <form class="layui-form box-form" action="">
         <slot></slot>
 
         <button :id="name" :name="name" type="button" class="layui-btn" lay-submit :lay-filter="filter" style="display: none;"></button>
@@ -31,6 +31,7 @@ export default {
                 form.on('submit(' + filter + ')', function (data) {
                     // emits("onSubmit", data.field)
                     _callback(data);
+                    return false;
                 })
 
             });
@@ -72,3 +73,8 @@ export default {
     }
 }
 </script>
+<style>
+.box-form{
+    margin: 10px;
+}
+</style>

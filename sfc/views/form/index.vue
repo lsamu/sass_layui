@@ -7,6 +7,9 @@
         <box-form-item label="说明">
             <box-textarea v-model="formOption.form.content"></box-textarea>
         </box-form-item>
+        <box-form-item label="时间">
+            <box-date-picker v-model="formOption.form.datePicker" placeholder="请选择时间"></box-date-picker>
+        </box-form-item>
         <box-form-item label="单选">
             <box-radio v-model="formOption.form.radio" :data="[{label:'男',value:1},{label:'女',value:2}]"></box-radio>
         </box-form-item>

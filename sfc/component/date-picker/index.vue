@@ -17,7 +17,7 @@ export default {
 
         onMounted(function () {
 
-            layui.use('laydate', function () {
+            layui.use(['laydate','jquery'], function () {
 
                 var laydate = layui.laydate;
 
@@ -28,6 +28,12 @@ export default {
                         emits("input", value)
                     }
                 });
+
+                layui.jquery("#" + id).on("input", function (e) {
+                    if(e.delegateTarget.value=="[object InputEvent]"){
+                        emits("input", "")
+                    }
+                })
 
             });
 
