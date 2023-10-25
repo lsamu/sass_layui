@@ -1,7 +1,7 @@
 <template>
     <div>
         <select :lay-filter="filter" :name="name" v-bind="that.$attrs" v-on="that.$listeners">
-            <option value=""></option>
+            <!-- <option value=""></option> -->
             <option :value="item.value" v-for="item, index in attrs.data || []" :key="index">{{ item.label }}</option>
         </select>
     </div>
