@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="//unpkg.com/element-plus/dist/index.css" />
-    <script src="https://unpkg.com/vue@next"></script>
-    <script src="https://unpkg.com/element-plus"></script>
-    <script src="https://unpkg.com/vue3-sfc-loader"></script>
+    <link rel="stylesheet" href="./script/element-plus/index.css" />
+    <script src="./script/vue/vue.global.js"></script>
+    <script src="./script/element-plus/index.full.js"></script>
+    <script src="./script/sfc/vue3-sfc-loader.js"></script>
 </head>
 
 <body>
@@ -39,9 +39,13 @@
 
         const { loadModule } = window['vue3-sfc-loader'];
 
+        const loadAsyncComponent = (url) => Vue.defineAsyncComponent(() => loadModule(url, options));
+
+        const loadComponent = (url) => Vue.defineComponent(() => loadModule(url, options));
+
         const app = Vue.createApp({
             components: {
-                'App': Vue.defineAsyncComponent(() => loadModule('./App.vue', options))
+                'App': loadAsyncComponent("./App.vue")
             },
             template: '<App/>'
         });

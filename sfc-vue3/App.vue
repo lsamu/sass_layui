@@ -11,6 +11,8 @@
     <el-dialog v-model="dialogOption.value" title="我的弹窗标题" :draggable="true">
         我是弹窗
     </el-dialog>
+
+    <demo></demo>
 </template>
 <script setup>
 
@@ -18,6 +20,7 @@ import { ref, reactive } from "vue"
 
 const title = ref("i am title 1111");
 
+const demo  = loadAsyncComponent("./views/demo/index.vue")
 
 const thatOption = reactive({
     title: "标题",
