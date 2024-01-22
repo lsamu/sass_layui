@@ -7,13 +7,18 @@
 
     <link rel="stylesheet" href="./script/element-plus/index.css" />
     <script src="./script/vue/vue.global.js"></script>
+    <script src="./script/vue-router/vue-router.global.prod.js"></script>
     <script src="./script/element-plus/index.full.js"></script>
     <script src="./script/sfc/vue3-sfc-loader.js"></script>
+
+
 </head>
 
 <body>
     <div id="app"></div>
     <script>
+
+        console.log(window)
 
         const options = {
             moduleCache: {
@@ -43,12 +48,19 @@
 
         const loadComponent = (url) => Vue.defineComponent(() => loadModule(url, options));
 
+
+    </script>
+    <script src="./router.js"></script>
+    <script>
+
         const app = Vue.createApp({
             components: {
                 'App': loadAsyncComponent("./App.vue")
             },
             template: '<App/>'
         });
+
+        app.use(boxRouter);
 
         app.use(ElementPlus);
 
